@@ -80,4 +80,26 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => {
         revealObserver.observe(el);
     });
+
+
+    window.addEventListener('scroll', () => {
+        const floatingBtn = document.getElementById('floatingBtn');
+        const formSection = document.getElementById('form');
+        
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const scrollBottom = scrollY + windowHeight;
+
+        const formTop = formSection.offsetTop;
+
+        const shouldShow = scrollY > 400;
+        
+        const shouldHide = scrollBottom > formTop + 100;
+
+        if (shouldShow && !shouldHide) {
+            floatingBtn.classList.add('visible');
+        } else {
+            floatingBtn.classList.remove('visible');
+        }
+    });
 });
